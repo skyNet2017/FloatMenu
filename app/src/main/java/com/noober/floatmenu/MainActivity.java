@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.noober.floatmenu.dummy.DummyContent;
 import com.noober.menu.FloatMenu;
+import com.noober.menu.MenuUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,11 +74,36 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
 				Toast.makeText(MainActivity.this, "菜单"+position, Toast.LENGTH_SHORT).show();
 			}
 		});
+		List<MenuUtil.IMenu<String>> menus = new ArrayList<>();
+		for (int i = 0; i < 50; i++) {
+			int finalI = i;
+			menus.add(new MenuUtil.IMenu<String>() {
+				@Override
+				public String text() {
+					return "菜单" + finalI;
+				}
+
+				@Override
+				public String groupName() {
+					return "group" + (finalI / 3);
+				}
+
+				@Override
+				public void onMenuClicked(int position, String bean) {
+					Toast.makeText(MainActivity.this,
+							"菜单"+position, Toast.LENGTH_SHORT).show();
+				}
+			});
+		}
+
+
+
 
 		btn1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				floatMenu.show();
+				//floatMenu.show();
+				MenuUtil.showMenu(btn1, menus, "test");
 			}
 		});
 
