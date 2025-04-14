@@ -1,5 +1,6 @@
 package com.noober.menu;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import com.noober.menu.group.GroupedFloatMenu;
@@ -19,13 +20,38 @@ public class MenuUtil {
     public static <T> void showMenu(View targetView, List<IMenu<T>> menus, T info) {
         // 按 groupName 分组
         Map<String, List<IMenu<T>>> groupedMenus = new HashMap<>();
+        boolean allEmpty = true;
         for (IMenu<T> menu : menus) {
             String groupName = menu.groupName(); // 假设 IMenu 接口新增了 groupName 方法
+            if(TextUtils.isEmpty(groupName)){
+                groupName = "默认分组";
+            }else {
+                allEmpty = false;
+            }
             if (!groupedMenus.containsKey(groupName)) {
                 groupedMenus.put(groupName, new ArrayList<>());
             }
             groupedMenus.get(groupName).add(menu);
         }
+
+        if(allEmpty){
+            // 如果所有菜单都没有分组名称，则直接使用原来的方式显示菜单
+            String[] desc = new String[menus.size()];
+            for (int i = 0; i < menus.size(); i++) {
+                desc[i] = menus.get(i).text();
+            }
+            FloatMenu floatMenu = new FloatMenu(targetView.getContext(), targetView);
+            floatMenu.items(desc);
+            floatMenu.setOnItemClickListener(new FloatMenu.OnItemClickListener() {
+                @Override
+                public void onClick(View v, int position) {
+                    menus.get(position).onMenuClicked(position, info);
+                }
+            });
+            floatMenu.showAsDropDown(targetView);
+            return;
+        }
+
 
         // 构造 GroupedFloatMenu 所需的数据结构
         List<GroupedFloatMenu.MenuGroup> menuGroups = new ArrayList<>();
