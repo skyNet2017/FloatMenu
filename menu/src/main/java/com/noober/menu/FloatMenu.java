@@ -170,6 +170,7 @@ public class FloatMenu extends PopupWindow{
 			//menuLayout.setLayoutParams(new LinearLayout.LayoutParams(menuWidth, menuHeight));
 			menuLayout.setMinimumHeight(menuHeight);
 		}
+		menuLayout.setBackgroundColor(Color.WHITE);
 		ScrollView scrollView = new ScrollView(context);
 		scrollView.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_shadow));
 		//scrollView.setBackgroundColor(Color.BLUE);

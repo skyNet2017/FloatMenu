@@ -17,6 +17,7 @@ import com.noober.menu.MenuUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements ItemFragment.OnListFragmentInteractionListener {
 
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
 			menus.add(new MenuUtil.IMenu<String>() {
 				@Override
 				public String text() {
-					return "菜单" + finalI;
+					return "菜单" + finalI+"-"+new Random(99990999).nextInt();
 				}
 
 				@Override
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
 				@Override
 				public void onMenuClicked(int position, String bean) {
 					Toast.makeText(MainActivity.this,
-							"菜单"+position, Toast.LENGTH_SHORT).show();
+							bean, Toast.LENGTH_SHORT).show();
 				}
 			});
 		}
