@@ -20,6 +20,7 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
 
+import com.noober.menu.Display;
 import com.noober.menu.R;
 
 import java.util.ArrayList;
@@ -63,16 +64,16 @@ public class GroupedFloatMenu extends PopupWindow {
             LinearLayout.LayoutParams.WRAP_CONTENT
         ));
         mainLayout.setMinimumHeight(minHeight); // 设置最小高度
-
+        int padding = Display.dip2px(context, 8);
         for (MenuGroup group : menuGroups) {
             // 添加组名
             TextView groupNameView = new TextView(context);
             groupNameView.setText(group.getGroupName());
-            groupNameView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            groupNameView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
             groupNameView.setTextColor(Color.BLACK);
             //设置粗体
             groupNameView.setTypeface(null, android.graphics.Typeface.BOLD);
-            groupNameView.setPadding(20, 10, 0, 10);
+            groupNameView.setPadding(padding, Display.dip2px(context, 5), 0, Display.dip2px(context, 5));
             mainLayout.addView(groupNameView);
 
             // 添加 GridLayout
@@ -83,10 +84,10 @@ public class GroupedFloatMenu extends PopupWindow {
 
             for (MenuItem menuItem : group.getItems()) {
                 TextView itemTextView = new TextView(context);
-                itemTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                itemTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
                 itemTextView.setText(menuItem.getItem());
                 itemTextView.setGravity(Gravity.CENTER);
-                itemTextView.setPadding(20, 20, 20, 20);
+                itemTextView.setPadding(padding, padding, padding, padding);
                 //itemTextView.setBackgroundResource(android.R.drawable.btn_default);
                 itemTextView.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.selector_item));
                 itemTextView.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +102,8 @@ public class GroupedFloatMenu extends PopupWindow {
                 FlexboxLayout.LayoutParams params = new FlexboxLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT, // 宽度为0配合flex属性
                         ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.setMargins(5, 5, 5, 5);
+                int margin = Display.dip2px(context, 0);
+                params.setMargins(margin, margin, margin, margin);
                 //params.setFlexGrow(1.0f); // 平均分配空间
                // params.setFlexBasisPercent(0.32f); // 每个占约1/3宽度（含边距）
                 itemTextView.setLayoutParams(params);
