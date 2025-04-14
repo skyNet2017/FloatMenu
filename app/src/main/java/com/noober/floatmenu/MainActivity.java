@@ -1,9 +1,8 @@
 package com.noober.floatmenu;
 
 import android.graphics.Point;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.noober.floatmenu.dummy.DummyContent;
 import com.noober.menu.FloatMenu;
-import com.noober.menu.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +59,12 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
         TestMenuItem menuItem3 = new TestMenuItem();
         menuItem3.setItem("菜单2");
         itemList.add(menuItem3);
+
+		for (int i = 0; i < 15; i++) {
+			TestMenuItem menuItem4 = new TestMenuItem();
+			menuItem4.setItem("菜单" + i);
+			itemList.add(menuItem4);
+		}
 //		floatMenu.items("菜单1", "菜单2", "菜单3");
         floatMenu.items(itemList);
 		floatMenu.setOnItemClickListener(new FloatMenu.OnItemClickListener() {

@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FloatMenu.iml" filepath="$PROJECT_DIR$/.idea/FloatMenu.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/menu/menu.iml" filepath="$PROJECT_DIR$/menu/menu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FloatMenu.iml" filepath="$PROJECT_DIR$/.idea/modules/FloatMenu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FloatMenu.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FloatMenu.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FloatMenu.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FloatMenu.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FloatMenu.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FloatMenu.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FloatMenu.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FloatMenu.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/menu/FloatMenu.menu.iml" filepath="$PROJECT_DIR$/.idea/modules/menu/FloatMenu.menu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/menu/FloatMenu.menu.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/menu/FloatMenu.menu.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/menu/FloatMenu.menu.main.iml" filepath="$PROJECT_DIR$/.idea/modules/menu/FloatMenu.menu.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/menu/FloatMenu.menu.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/menu/FloatMenu.menu.unitTest.iml" />
     </modules>
   </component>
 </project>

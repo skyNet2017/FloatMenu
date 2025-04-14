@@ -10,7 +10,7 @@ import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Xml;
 import android.view.Gravity;
@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -131,7 +132,7 @@ public class FloatMenu extends PopupWindow{
 
 	private void generateLayout(int itemWidth) {
 		menuLayout = new LinearLayout(context);
-		menuLayout.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_shadow));
+
 		menuLayout.setOrientation(LinearLayout.VERTICAL);
 		int padding = Display.dip2px(context, 12);
 		for(int i = 0; i < menuItemList.size(); i ++){
@@ -161,7 +162,21 @@ public class FloatMenu extends PopupWindow{
 		menuLayout.measure(width,height);
 		menuWidth = menuLayout.getMeasuredWidth();
 		menuHeight = menuLayout.getMeasuredHeight();
-		setContentView(menuLayout);
+		//获取屏幕高度
+		int screenWidth = context.getApplicationContext().getResources().getDisplayMetrics().heightPixels;
+
+		if(menuHeight > screenWidth*0.8){
+			menuHeight = (int) (screenWidth*0.8);
+			//menuLayout.setLayoutParams(new LinearLayout.LayoutParams(menuWidth, menuHeight));
+			menuLayout.setMinimumHeight(menuHeight);
+		}
+		ScrollView scrollView = new ScrollView(context);
+		scrollView.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_shadow));
+		//scrollView.setBackgroundColor(Color.BLUE);
+		scrollView.setScrollBarSize(0);
+		scrollView.setLayoutParams(new LinearLayout.LayoutParams(menuWidth, menuHeight));
+		scrollView.addView(menuLayout);
+		setContentView(scrollView);
 		setWidth(menuWidth);
 		setHeight(menuHeight);
 
