@@ -69,7 +69,7 @@ public class GroupedFloatMenu extends PopupWindow {
             // 添加组名
             TextView groupNameView = new TextView(context);
             groupNameView.setText(group.getGroupName());
-            groupNameView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+            groupNameView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             groupNameView.setTextColor(Color.BLACK);
             //设置粗体
             groupNameView.setTypeface(null, android.graphics.Typeface.BOLD);
@@ -84,7 +84,7 @@ public class GroupedFloatMenu extends PopupWindow {
 
             for (MenuItem menuItem : group.getItems()) {
                 TextView itemTextView = new TextView(context);
-                itemTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                itemTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
                 itemTextView.setText(menuItem.getItem());
                 itemTextView.setGravity(Gravity.CENTER);
                 itemTextView.setPadding(padding, padding, padding, padding);
