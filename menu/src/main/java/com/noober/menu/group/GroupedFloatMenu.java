@@ -40,8 +40,12 @@ public class GroupedFloatMenu extends PopupWindow {
     }
 
     private void init() {
-        // 新增：计算屏幕宽度并限制最大宽度
+        // 新增：获取屏幕高度计算最小高度
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        int screenHeight = displayMetrics.heightPixels;
+        int minHeight = (int) (screenHeight * 0.5f); // 设置最小高度为屏幕的20%
+
+        // 新增：计算屏幕宽度并限制最大宽度
         int screenWidth = displayMetrics.widthPixels;
         int maxWidth = (int) (screenWidth * 0.9f); // 设置宽度为屏幕的70%
 
@@ -50,7 +54,7 @@ public class GroupedFloatMenu extends PopupWindow {
         scrollView.setScrollBarSize(0); // 隐藏滚动条
         scrollView.setBackgroundColor(Color.TRANSPARENT); // 保持透明背景
 
-        // 修改：主布局设置最大宽度
+        // 修改：主布局设置最大宽度和最小高度
         LinearLayout mainLayout = new LinearLayout(context);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
         mainLayout.setPadding(20, 20, 20, 20);
@@ -58,6 +62,7 @@ public class GroupedFloatMenu extends PopupWindow {
                 maxWidth, // 限制最大宽度
             LinearLayout.LayoutParams.WRAP_CONTENT
         ));
+        mainLayout.setMinimumHeight(minHeight); // 设置最小高度
 
         for (MenuGroup group : menuGroups) {
             // 添加组名

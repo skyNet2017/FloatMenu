@@ -2,6 +2,7 @@ package com.noober.menu;
 
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.PopupWindow;
 
 import com.noober.menu.group.GroupedFloatMenu;
 
@@ -48,7 +49,8 @@ public class MenuUtil {
                     menus.get(position).onMenuClicked(position, info);
                 }
             });
-            floatMenu.showAsDropDown(targetView);
+
+            showAtBottomOrTop(targetView, floatMenu);
             return;
         }
 
@@ -66,11 +68,26 @@ public class MenuUtil {
 
         // 显示分组菜单
         GroupedFloatMenu groupedFloatMenu = new GroupedFloatMenu(targetView.getContext(), menuGroups);
-        groupedFloatMenu.showAsDropDown(targetView);
+        showAtBottomOrTop(targetView, groupedFloatMenu);
+
     }
 
-
-
+    private static void showAtBottomOrTop(View targetView, PopupWindow floatMenu) {
+        int[] location = new int[2];
+        targetView.getLocationOnScreen(location);
+        int screenHeight = targetView.getResources().getDisplayMetrics().heightPixels;
+        int targetViewY = location[1];
+        //打印
+        System.out.println("targetViewY: " + targetViewY);
+        System.out.println("screenHeight: " + screenHeight);
+        if (targetViewY > screenHeight / 2) {
+            // 如果超过屏幕高度的一半，则将菜单显示在上方
+            floatMenu.showAsDropDown(targetView, 0, -targetViewY);
+        } else {
+            // 否则显示在下方
+            floatMenu.showAsDropDown(targetView);
+        }
+    }
 
 
     public interface IMenu<T>{

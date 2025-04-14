@@ -75,6 +75,20 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
 				Toast.makeText(MainActivity.this, "菜单"+position, Toast.LENGTH_SHORT).show();
 			}
 		});
+		List<MenuUtil.IMenu<String>> menus = buildGroupedMenus();
+
+
+		btn1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//floatMenu.show();
+				MenuUtil.showMenu(btn1, menus, "test");
+			}
+		});
+
+	}
+
+	private List<MenuUtil.IMenu<String>> buildGroupedMenus() {
 		List<MenuUtil.IMenu<String>> menus = new ArrayList<>();
 		for (int i = 0; i < 50; i++) {
 			int finalI = i;
@@ -96,18 +110,7 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
 				}
 			});
 		}
-
-
-
-
-		btn1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//floatMenu.show();
-				MenuUtil.showMenu(btn1, menus, "test");
-			}
-		});
-
+		return menus;
 	}
 
 	private void init2(){
@@ -145,7 +148,11 @@ public class MainActivity extends AppCompatActivity implements ItemFragment.OnLi
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				FloatMenu floatMenu = new FloatMenu(MainActivity.this);
 				floatMenu.items("菜单1", "菜单2", "菜单3");
-				floatMenu.show(point);
+				//floatMenu.show(point);
+
+
+				List<MenuUtil.IMenu<String>> menus = buildGroupedMenus();
+				MenuUtil.showMenu(view, menus, "test");
 			}
 		});
 	}
